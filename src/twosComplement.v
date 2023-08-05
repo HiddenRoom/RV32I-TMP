@@ -10,15 +10,15 @@ module twosComplement
 (
   input   [NUM_SIZE - 1:0] dIn,
 
-  output  [NUM_SIZE - 1:0] twosComplement
+  output  [NUM_SIZE - 1:0] twosComp
 );
 
   wire ignore;
 
-  wire [NUM_SIZE - 1:0] onesComplement;
-  assign onesComplement = ~dIn;
+  wire [NUM_SIZE - 1:0] onesComp;
+  assign onesComp = ~dIn;
 
-  adder #(ADDER_SIZE = NUM_SIZE) twosCompAdder(.dIn0(onesComplement), .dIn1({{NUM_SIZE{1'b0}}, 1'b1}), .overflow(ignore), .dOut(twosComplement));
+  adder #(.ADDER_SIZE(NUM_SIZE)) twosCompAdder(.dIn0(onesComp), .dIn1({{NUM_SIZE - 1{1'b0}}, 1'b1}), .overflow(ignore), .dOut(twosComp));
 
 endmodule
 

@@ -21,9 +21,11 @@ module adder
   halfAdder firstAdder(.a(dIn0[0]), .b(dIn1[0]), .sum(dOut[0]), .carry(carries[0]));
 
   genvar i;
-  for(i = 1; i < ADDER_SIZE - 1; i = i + 1) begin: middleAdders
-  begin
-    fullAdder adder(.a(dIn0[i]), .b(dIn1[i]), .cIn(carries[i - 1]), .sum(dOut[i]), .cOut(carries[i]));
+  for(i = 1; i < ADDER_SIZE - 1; i = i + 1) 
+  begin: middleAdders
+    begin
+      fullAdder adder(.a(dIn0[i]), .b(dIn1[i]), .cIn(carries[i - 1]), .sum(dOut[i]), .cOut(carries[i]));
+    end
   end
 
   fullAdder lastAdder(.a(dIn0[ADDER_SIZE - 1]), .b(dIn1[ADDER_SIZE - 1]), .cIn(carries[ADDER_SIZE - 2]), .sum(dOut[ADDER_SIZE - 1]), .cOut(carries[ADDER_SIZE - 1]));
