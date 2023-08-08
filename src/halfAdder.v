@@ -3,11 +3,11 @@
 
 module halfAdder
 (
-  input a,
-  input b,
+  input   a,
+  input   b,
 
-  output sum,
-  output carry
+  output  sum,
+  output  carry
 );
 
   xor(sum, a, b);

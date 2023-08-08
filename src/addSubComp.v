@@ -25,12 +25,12 @@ module addSubComp
 
   twosComplement #(.NUM_SIZE(NUM_SIZE)) twosCompNegative(.dIn(dIn1), .twosComp(twosComp));
 
-  adder #(.ADDER_SIZE(NUM_SIZE)) addition(.dIn0(dIn0), .dIn1(dIn1), .overflow(overflowAdd), .dOut(add));
-  adder #(.ADDER_SIZE(NUM_SIZE)) subtraction(.dIn0(dIn0), .dIn1(twosComp), .overflow(overflowSub), .dOut(sub));
+  adder #(.NUM_SIZE(NUM_SIZE)) addition(.dIn0(dIn0), .dIn1(dIn1), .overflow(overflowAdd), .dOut(add));
+  adder #(.NUM_SIZE(NUM_SIZE)) subtraction(.dIn0(dIn0), .dIn1(twosComp), .overflow(overflowSub), .dOut(sub));
 
   assign equal = ~(|sub);
-  assign greaterThan = (~sub[NUM_SIZE - 1]) & (~equal);
-  assign lessThan = sub[NUM_SIZE - 1];
+  assign greaterThan = (~sub[NUM_SIZE - 1]) & (~equal) & (~overflowAdd) | (overflowSub);
+  assign lessThan = sub[NUM_SIZE - 1] & (~overflowSub) | (overflowAdd);
 
 endmodule
 

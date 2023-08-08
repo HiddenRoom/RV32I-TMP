@@ -1,14 +1,14 @@
-`ifndef __HALFADDER__
-`define __HALFADDER__
+`ifndef __FULLADDER__
+`define __FULLADDER__
 
 module fullAdder
 (
-  input a,
-  input b,
-  input cIn,
+  input   a,
+  input   b,
+  input   cIn,
 
-  output sum,
-  output cOut
+  output  sum,
+  output  cOut
 );
   
   wire sumAB, carryAB, sumCInSumAB, carryCInSumAB;

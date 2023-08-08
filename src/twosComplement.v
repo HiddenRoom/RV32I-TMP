@@ -18,7 +18,7 @@ module twosComplement
   wire [NUM_SIZE - 1:0] onesComp;
   assign onesComp = ~dIn;
 
-  adder #(.ADDER_SIZE(NUM_SIZE)) twosCompAdder(.dIn0(onesComp), .dIn1({{NUM_SIZE - 1{1'b0}}, 1'b1}), .overflow(ignore), .dOut(twosComp));
+  adder #(.NUM_SIZE(NUM_SIZE)) twosCompAdder(.dIn0(onesComp), .dIn1({{NUM_SIZE - 1{1'b0}}, 1'b1}), .overflow(ignore), .dOut(twosComp));
 
 endmodule
 
